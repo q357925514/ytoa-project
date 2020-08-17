@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>layui</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="layui/css/layui.css">
+	</head>
+
+	<body>
+		<div class="site-demo-button" id="layerDemo" style="margin-bottom: 0;">
+			<blockquote class="layui-elem-quote layui-quote-nm">
+				Tips：为了更清晰演示，每触发下述一个例子之前，都会关闭所有已经演示的层
+			</blockquote>
+			<button data-method="setTop" class="layui-btn">多窗口模式，层叠置顶</button>
+			<button data-method="confirmTrans" class="layui-btn">配置一个透明的询问框</button>
+			<button data-method="notice" class="layui-btn">示范一个公告层</button>
+			<button data-method="offset" data-type="t" class="layui-btn layui-btn-normal">上弹出</button>
+			<button data-method="offset" data-type="r" class="layui-btn layui-btn-normal">右弹出</button>
+			<button data-method="offset" data-type="b" class="layui-btn layui-btn-normal">下弹出</button>
+			<button data-method="offset" data-type="l" class="layui-btn layui-btn-normal">左弹出</button>
+			<button data-method="offset" data-type="lt" class="layui-btn layui-btn-normal">左上弹出</button>
+			<button data-method="offset" data-type="lb" class="layui-btn layui-btn-normal">左下弹出</button>
+			<button data-method="offset" data-type="rt" class="layui-btn layui-btn-normal">右上弹出</button>
+			<button data-method="offset" data-type="rb" class="layui-btn layui-btn-normal">右下弹出</button>
+			<button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">居中弹出</button>
+		</div>
+
+		<script src="layui/layui.js"></script>
+		<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+		<script>
+			layui.use('layer', function() { //独立版的layer无需执行这一句
+				var $ = layui.jquery,
+					layer = layui.layer; //独立版的layer无需执行这一句
+
+				//触发事件
+				var active = {
+					notice: function() {
+						//示范一个公告层
+						layer.open({
+							type: 1,
+							title: false //不显示标题栏
+								,
+							closeBtn: false,
+							area: '300px;',
+							shade: 0.8,
+							id: 'LAY_layuipro' //设定一个id，防止重复弹出
+								,
+							btn: ['确定', '取消'],
+							btnAlign: 'c',
+							moveType: 1 //拖拽模式，0或者1
+								,
+							content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">确定删除吗？</div>',
+							success: function(layero) {
+								var btn = layero.find('.layui-layer-btn');
+								btn.find('.layui-layer-btn0').attr({
+									href: 'http://www.layui.com/',
+									target: '_blank'
+								});
+							}
+						});
+					}
+				};
+
+				$('#layerDemo .layui-btn').on('click', function() {
+					var othis = $(this),
+						method = othis.data('method');
+					active[method] ? active[method].call(this, othis) : '';
+				});
+				$("#setFouces").on("click", function() {
+					var othis = $(this),
+						method = othis.data('method');
+					active[method] ? active[method].call(this, othis) : '';
+				});
+
+			});
+		</script>
+
+	</body>
+
+</html>
