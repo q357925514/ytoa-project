@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/ytoa-eureka-server/pom.xml" />
         <option value="$PROJECT_DIR$/ytoa-eureka-user-module/pom.xml" />
         <option value="$PROJECT_DIR$/ytoa-zuul/pom.xml" />
+        <option value="$PROJECT_DIR$/ytoa-eureka-information-module/pom.xml" />
       </list>
     </option>
   </component>
